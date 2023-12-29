@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <style>
+        img{
+            width: 100%;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <img id="food">
+    <script>
+        // $("#food")
+        // .on("error", (e)=>{
+        //     $(e.currentTarget).attr("src","https://static.thenounproject.com/png/3674277-200.png")
+        // })
+        // .attr("src", "missing.png")
+
+        const book = document.querySelector("#food");
+        book.addEventListener("error", (e)=>{
+            e.currentTarget.setAttribute("src", "https://static.thenounproject.com/png/3674277-200.png")
+        })
+        book.setAttribute("src", "missing.png");
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .tip {
+            display: inline-block;
+            background-color: #ccf9f9;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+            font-size: 30px;
+            user-select: none;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="tip">打開右鍵選單</div>
+    <script>
+        // $(document).on("contextmenu",  (e) => {
+        //     e.preventDefault();
+        // });
+        // $(".tip").on('contextmenu',  (e) => {
+        //     e.stopPropagation();
+        // });
+        document.addEventListener(('contextmenu'), (e) => {
+            e.preventDefault();
+        })
+        document.querySelector('.tip').addEventListener('contextmenu', (e) => {
+            e.stopPropagation();
+        })
+    </script>
+</body>
+
+</html>

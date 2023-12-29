@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,	initial-scale=1.0" />
+    <script src="../CDN/jquery-3.7.1.min.js"></script>
+    <title>CreditCard</title>
+    <style>
+      .card {
+        position: relative;
+        width: 400px;
+        aspect-ratio: 4/3;
+        /* 3D的使用  */
+        perspective: 500px;
+        .content {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          transition: transform 2s;
+          .page {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fa0;
+            border-radius: 10px;
+            font-size: 36px;
+            display: grid;
+            font-family: sans-serif;
+            place-items: center;
+            /* 使卡片座左右翻轉 */
+            backface-visibility: hidden;
+          }
+          .back {
+            transform: rotateY(-180deg);
+            .cw {
+              line-height: 36px;
+              background-color: #fff;
+              width: calc(100% - 20px);
+              height: 44px;
+              font-size: 16px;
+              text-align: right;
+              box-sizing: border-box;
+              padding-right: 5px;
+            }
+          }
+        }
+        .active {
+          transform: rotateY(180deg);
+          transition: transform 0.5s;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="content">
+        <div class="page front">
+          <div class="nums">#### #### #### ####</div>
+        </div>
+        <div class="page back">
+          <div class="cw"></div>
+        </div>
+      </div>
+    </div>
+    <form action="">
+      <div class="area1">
+        <input type="text" class="num1" />
+        <input type="text" class="num2" />
+        <input type="text" class="num3" />
+        <input type="text" class="num4" />
+      </div>
+      <div class="area4">
+        <input type="text" class="cwnum" />
+      </div>
+    </form>
+    <script>
+      $(".area1 input").each((index, input) => {
+        $(input).on("keyup", (e) => {
+          let that = e.currentTarget;
+          let check = $(that).val().length;
+          if (check > 3) {
+            e.preventDefault();
+          }
+          if (check === 4) {
+            console.log("!!!");
+            if (index === 3) {
+              $(".area4 input").focus();
+            } else {
+              $(that).next("input").focus();
+            }
+          }
+        });
+      });
+
+      $(".area4 input").on("keyup", (e) => {
+        let that = e.currentTarget;
+        let check = $(that).val().length;
+        if (check === 0 && e.which === 8) {
+          $(".area1 input")[3].focus();
+        }
+      });
+
+      $(".area1 input").on("focus", () => {
+        $(".card .content").removeClass("active");
+      });
+      $(".area4 input").on("focus", () => {
+        $(".card .content").addClass("active");
+      });
+    </script>
+  </body>
+</html>

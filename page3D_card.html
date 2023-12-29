@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,	initial-scale=1.0" />
+    <script src="../CDN/jquery-3.7.1.min.js"></script>
+    <title>page3D</title>
+    <style>
+      .card {
+        position: relative;
+        width: 400px;
+        aspect-ratio: 4/3;
+        /* 3D的使用  */
+        perspective: 500px;
+        .content {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          transition: transform 2s;
+          .page {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fa0;
+            border-radius: 10px;
+            font-size: 80px;
+            display: grid;
+            font-family: sans-serif;
+            place-items: center;
+            /* 使卡片座左右翻轉 */
+            backface-visibility: hidden;
+          }
+          .back {
+            transform: rotateY(-180deg);
+          }
+        }
+        &:hover .content{
+          transform: rotateY(180deg);
+          transition: transform .5s;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="content">
+        <div class="page front">FROUNT</div>
+        <div class="page back">BACK</div>
+      </div>
+    </div>
+    <script></script>
+  </body>
+</html>

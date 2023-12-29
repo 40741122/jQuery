@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .block {
+            width: 300px;
+            height: 300px;
+            margin-top: 50px;
+            background-color: #f59826;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .block2 {
+            width: 150px;
+            height: 150px;
+            background-color: #f8e8d5;
+            border-radius: 10px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="block">
+        <div class="block2"></div>
+    </div>
+    <script>
+        // $(".block").on("mousedown", function (event) {
+        //     console.log("mousedown")
+        // }).on("mouseup", function (event) {
+        //     console.log("mouseup")
+        // }).on("mouseenter", function (event) {
+        //     console.log("mouseenter")
+        // }).on("mouseleave", function (event) {
+        //     console.log("mouseleave")
+        // }).on("mousemove", function (event) {
+        //     console.log("mousemove")
+        // }).on("mouseout", function (event) {
+        //     console.log("mouseout")
+        // }).on("mouseover", function (event) {
+        //     console.log("mouseover")
+        // });
+        
+        // $(".block").on("mouseover", function (event) {
+        //     console.log("block mouseover")
+        // })
+        // $(".block2").on("mouseover", function (event) {
+        //     console.log("block2 mouseover")
+        // })
+
+        $(".block").on("mouseenter", function (event) {
+            console.log("block mouseenter")
+        })
+        $(".block2").on("mouseenter", function (event) {
+            console.log("block2 mouseenter")
+        })
+    </script>
+</body>
+
+</html>

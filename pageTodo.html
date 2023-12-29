@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <style>
+        .row1 {
+            border-bottom: 1px dotted #ccc;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .row2 {
+            border-bottom: 1px dotted #ccc;
+            margin-top: 10px;
+            font-size: 24px;
+        }
+
+        input[type=text]{
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        input[type=checkbox] + label{
+            display: block;
+            flex: 1;
+        }
+
+        .todoRow{
+            display: flex;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row row2">
+            待辦事項
+        </div>
+        <div class="area1">
+            <div class="row row1 todoRow">
+                <input id="todo1" type="checkbox">
+                <label for="todo1">買雞蛋</label>
+            </div>
+            <div class="row row1 inputRow">
+                <input type="text" placeholder="輸入完畢按 ENTER 送出">
+            </div>
+        </div>
+        <div class="area2">
+            <div class="row row2">
+                完成事項
+            </div>
+        </div>
+    </div>
+    <script>
+        let todoAmout = 1;
+        $("input[type=text]").on("keyup", function(e){
+            if(e.key === "Enter"){
+                todoAmout++;
+                let todoContent = $(this).val()
+                let template = `
+                <div class="row row1 todoRow">
+                    <input id="todo${todoAmout}" type="checkbox">
+                    <label for="todo${todoAmout}">${todoContent}</label>
+                </div>`;
+                $(this).closest(".row").before(template);
+                $(this).val("");
+            }
+        })
+
+        // $("input[type=checkbox]").on("change", function(){
+        //     if($(this).prop("checked") === true){
+        //         $(this).closest(".row").appendTo(".area2")
+        //     }else{
+        //         $(this).closest(".row").insertBefore(".inputRow")
+        //     }
+        // })
+
+        $(".container").on("change", "input[type=checkbox]", function(){
+            if($(this).prop("checked") === true){
+                $(this).closest(".row").appendTo(".area2")
+            }else{
+                $(this).closest(".row").insertBefore(".inputRow")
+            }
+        })
+    </script>
+</body>
+
+</html>

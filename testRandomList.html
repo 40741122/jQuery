@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        console.log(randomList(1,6,6));
+        
+        function randomList(startNum, endNum, amount){
+            let leftBox = [];
+            let rightBox = [];
+            for(let i=startNum;i<=endNum;i++){
+                leftBox.push(i);
+            }
+
+            // 抽 1 個
+            // pickOne();
+            // 抽 6 個 (amount)
+            for(let i=0;i<amount;i++){
+                pickOne();
+            }
+            // console.log(rightBox);
+
+            return rightBox;
+
+            function pickOne(){
+                let pickIndex = Math.floor(Math.random()*leftBox.length)
+                rightBox.push(leftBox[pickIndex])
+                leftBox.splice(pickIndex,1);
+            }
+        }
+    </script>
+</body>
+</html>

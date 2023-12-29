@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .block {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-top: 50px;
+            background-color: #f59826;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .block img {
+            position: absolute;
+            bottom: -200px;
+            transition: all 0.2s;
+        }
+
+        .block.active img {
+            bottom: 0;
+        }
+    </style>
+    <title>test Hover</title>
+</head>
+
+<body>
+    <div class="block">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/009/665/322/small/cute-kitty-cat-family-greeting-cartoon-element-png.png"
+            alt="">
+    </div>
+    <script>
+        // $(".block").hover(
+        //     function(){
+        //         $(this).addClass("active");
+        //     },
+        //     function(){
+        //         $(this).removeClass("active");
+        //     }
+        // )
+        $(".block")
+            .on("mouseenter", function(){
+                $(this).addClass("active");
+            })
+            .on("mouseleave", function(){
+                $(this).removeClass("active");
+            });
+    </script>
+</body>
+
+</html>
