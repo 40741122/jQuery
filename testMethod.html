@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row row1">1</div>
+        <div class="row row2">2</div>
+        <div class="row row3">3</div>
+        <div class="row row4">4</div>
+        <div class="row row5">5</div>
+    </div>
+    <script>
+        // console.log($(".row3").index());
+        // console.log($(".row").toArray());
+        // console.log($(".row").get());
+        // console.log($(".row").get(3));
+        // console.log($(".row").eq(3));
+
+        // let xmlString = "<bookstore><book><title>Book 1</title></book></bookstore>";
+        // let xmlDom = $.parseXML(xmlString);
+        // console.log(xmlDom);
+        // $(xmlDom).find("book").each((index, elem)=>{
+        //     console.log(elem);
+        // });
+
+        // let ary = ['sky', 'maplet', 'car', 'mapper', 'dog', 'maple'];
+        // let newAry = $.grep(ary, (elem)=>{
+        //     return elem.indexOf("map") != -1
+        // });
+        // let newAry = $.grep(ary, elem=>elem.indexOf("map") != -1);
+        // console.log(newAry);
+        // let newAry2 = ary.filter(elem=>elem.indexOf("map") != -1);
+        // console.log(newAry2);
+
+        // console.log($.inArray("sky", ary));
+        // console.log(ary.indexOf("sky"));
+        // console.log(ary.includes("sky"));
+
+        // console.log($(".row"));
+        // console.log($.isArray($(".row")));
+        // console.log($.isArray($.makeArray($(".row"))));
+
+        // let ary2 = ["a", "b", "c", "d", "e"];
+        // $.map(ary2, (elem, index)=>{
+        //     console.log(elem);
+        // })
+
+        let ary1 = [1, 2, 3];
+        let ary2 = [4, 5, 6];
+        let ary3 = [7, 8, 9];
+        // let ary = $.merge(ary1, ary2, ary3);
+        // console.log(ary);
+        console.log([].concat(ary1, ary2, ary3));
+
+        console.log([...ary1, ...ary2, ...ary3]);
+
+        let str = "<b>TEST</b>test123"
+        // $("body").append($.parseHTML(str));
+        $("body").append($(str));
+
+        let ary5 = [1, 2, 3, 2, 1]
+        console.log(ary5);
+        console.log($.unique(ary5));// 此方法已失效
+        console.log(ary5.sort((a,b)=>a-b));
+        console.log(ary5.sort((a,b)=>b-a));
+        console.log([...new Set(ary5)]);
+        console.log(ary5.filter((item, index, ary)=> ary.indexOf(item) === index));
+
+        // data("key") = JS 的 dataset.key
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <style>
+        .game{
+            position: relative;
+            height: 600px;
+            .a{
+                position: absolute;
+                left: 200px;
+                top: 100px;
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                opacity: 0.7;
+            }
+            .b{
+                position: absolute;
+                left: 250px;
+                top: 150px;
+                width: 100px;
+                height: 100px;
+                background-color: rgb(51, 0, 255);
+                opacity: 0.7;
+            }
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="game">
+        <div class="a"></div>
+        <div class="b"></div>
+    </div>
+    <script>
+        let x1 = $(".a").offset().left;
+        let y1 = $(".a").offset().top;
+        let w1 = $(".a").outerWidth();
+        let h1 = $(".a").outerHeight();
+
+        let x2 = $(".b").offset().left;
+        let y2 = $(".b").offset().top;
+        let w2 = $(".b").outerWidth();
+        let h2 = $(".b").outerHeight();
+
+        if(
+            x1<x2+w2 &&
+            x1+w1>x2 &&
+            y1<y2+y2 &&
+            y1+h1>y2
+        ){
+            console.log("重疊");
+        }else{
+            console.log("沒重疊");
+        }
+    </script>
+</body>
+</html>

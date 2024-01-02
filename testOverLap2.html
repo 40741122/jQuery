@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <style>
+        .game{
+            position: relative;
+            height: 600px;
+            .a{
+                position: absolute;
+                left: 200px;
+                top: 100px;
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                opacity: 0.7;
+            }
+            .a1{
+                top: 300px;
+                left: 100px;
+            }
+            .b{
+                position: absolute;
+                left: 250px;
+                top: 150px;
+                width: 100px;
+                height: 100px;
+                background-color: rgb(51, 0, 255);
+                opacity: 0.7;
+            }
+            .active{
+                opacity: 1;
+            }
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="game">
+        <div class="a"></div>
+        <div class="a a1"></div>
+        <div class="b"></div>
+    </div>
+    <script>
+        let trace = false;
+        $(".b").on("click", ()=>{
+            trace = !trace;
+        })
+        $(window).on("mousemove", (e)=>{
+            if(trace){
+                let mouseX = e.pageX - $(".b").outerWidth()/2;
+                let mouseY = e.pageY - $(".b").outerHeight()/2;
+                $(".b").css("left", mouseX);
+                $(".b").css("top", mouseY);
+                let check = false; 
+                // isOverlap($(".a"), $(".b"));
+
+                $(".a").each((index, elem)=>{
+                    if(isOverlap($(elem), $(".b"))){
+                        check = true;
+                        return false;
+                    }
+                })
+
+                if(check){
+                    $(".b").addClass("active");
+                }else{
+                    $(".b").removeClass("active");
+                }
+            }
+        })
+
+        function isOverlap($div, $div2){
+            let x1 = $div.offset().left;
+            let y1 = $div.offset().top;
+            let w1 = $div.outerWidth();
+            let h1 = $div.outerHeight();
+
+            let x2 = $div2.offset().left;
+            let y2 = $div2.offset().top;
+            let w2 = $div2.outerWidth();
+            let h2 = $div2.outerHeight();
+
+            if(
+                x1<x2+w2 &&
+                x1+w1>x2 &&
+                y1<y2+y2 &&
+                y1+h1>y2
+            ){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        
+    </script>
+</body>
+</html>
