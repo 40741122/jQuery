@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 600px;
+        }
+
+        .row {
+            font-size: 24px;
+            padding: 10px;
+            border-radius: 10px;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+
+        .row1 {
+            background-color: #e7ef9c;
+            height: 100px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row row2">
+            <button id="btn1">捲出</button>
+            <button id="btn2">捲入</button>
+            <button id="btn3">捲出捲入開關</button>
+        </div>
+        <div class="row row1"></div>
+        <div class="row text"></div>
+    </div>
+    <script>
+        $("#btn1").on("click", ()=>{
+            $(".row1").slideUp(()=>{
+                $(".text").text("捲出了")
+            });
+        })
+
+        $("#btn2").on("click", ()=>{
+            $(".row1").slideDown(3000, ()=>{
+                $(".text").text("捲入了")
+            });
+        })
+
+        $("#btn2").on("click", ()=>{
+            $(".row1").slideToggle((e)=>{
+                // $(".text").text("捲入了")
+                console.log(e);
+            });
+        })
+    </script>
+</body>
+
+</html>

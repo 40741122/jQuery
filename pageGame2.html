@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <style>
+        .game{
+            position: relative;
+            width: 480px;
+            height: 360px;
+            .bgi{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url(./images/univer1.png);
+                animation-name: bgiAni;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                animation-timing-function: step-start;
+            }
+            .myPlane{
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto;
+                bottom: 10px;
+            }
+            .bullet{
+                position: absolute;
+                left: 0;
+                right: 0;
+                width: 24px;
+                height: 25px;
+                margin: auto;
+                bottom: 50px;
+            }
+        }
+
+        @keyframes bgiAni{
+            0%{background-image: url(./images/univer1.png);}
+            50%{background-image: url(./images/univer2.png);}
+            100%{background-image: url(./images/univer1.png);}
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="game">
+        <div class="bgi"></div>
+        <img class="myPlane" src="./images/plane1.png" alt="">
+        <!-- <div class="bullet">
+            <img src="./images/bullet1.png" alt="">
+        </div> -->
+    </div>
+    <script>
+        let x = 0;
+        let bn = 0;
+        let keysPressed = {};
+        let canShoot = true
+        $(window).on("keyup", (e)=>{
+            delete keysPressed[e.which];
+        }).on("keydown", (e)=>{
+            keysPressed[e.which] = true;            
+        })
+
+        gameLoop();
+
+        function gameLoop(){
+            if(keysPressed[37]){
+                x-=10;
+                if(x <= -400){
+                    x = -400;
+                }
+                $(".myPlane").css("left", x)
+            }
+            if(keysPressed[39]){
+                x+=10;
+                if(x >= 400){
+                    x = 400;
+                }
+                $(".myPlane").css("left", x)
+            }
+            if(keysPressed[32]){
+                if(canShoot === true){
+                    canShoot = false;
+                    bn++;
+                    let template=`
+                    <div class="bullet bullet${bn}">
+                        <img src="./images/bullet1.png" alt="">
+                    </div>`;
+                    $(".game").append(template);
+                    $(".game .bullet"+bn).css("left", x);
+                    $(".game .bullet"+bn).animate(
+                        {bottom: "480px"}, 1000, "linear", function(){
+                            $(this).remove();
+                        }
+                    )
+                    setTimeout(()=>{
+                        canShoot = true;
+                    }, 120)
+                }
+            }
+
+            requestAnimationFrame(gameLoop);
+        }
+    </script>
+</body>
+</html>
