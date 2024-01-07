@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <style>
+        :root {
+            --main-color  : #437281;
+            --second-color: #eee;
+        }
+
+        table{
+            width: 80%;
+        }
+
+        img{
+            width: 170px;
+            height: 100px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <table class="member-table table text-center mt-4">
+            <thead>
+                <tr class="text-nowrap">
+                    <!-- <th style="width: 80px;" class="d-flex justify-content-center">
+                        <div>
+                            <p class="m-0">編號 </p>
+                        </div>
+                    </th> -->
+                    <th>名稱</th>
+                    <th>類型</th>
+                    <th>電話</th>
+                    <th>地址</th>
+                    <th>照片</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+
+        </table>
+    </div>
+    <script>
+        let tem
+        let url = "./scenic_spot_C_f.json";
+        $.getJSON(url, function(e){
+            console.log(e.XML_Head.Infos.Info[1]);
+            console.log(e.XML_Head.Infos.Info.length)
+
+            var randomNumbers = [];
+
+            while (randomNumbers.length < 100) {
+                var randomNumber = Math.floor(Math.random() * e.XML_Head.Infos.Info.length);
+                if (randomNumbers.indexOf(randomNumber) === -1) {
+                randomNumbers.push(randomNumber);
+                }
+            }
+            console.log(randomNumbers);
+
+            for(i=0; i<100; i++){
+                tem = ` <tr>
+                            <td>${e.XML_Head.Infos.Info[randomNumbers[i]].Name}</td>
+                            <td>${e.XML_Head.Infos.Info[randomNumbers[i]].Orgclass}</td>
+                            <td>${e.XML_Head.Infos.Info[randomNumbers[i]].Tel}</td>
+                            <td>${e.XML_Head.Infos.Info[randomNumbers[i]].Add}</td>
+                            <td>
+                                <img src="${e.XML_Head.Infos.Info[randomNumbers[i]].Picture1}">
+                            </td>
+                        </tr>` ;
+                $("tbody").append(tem)
+            }
+        })
+    </script>
+</body>
+</html>
